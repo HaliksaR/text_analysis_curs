@@ -1,4 +1,4 @@
-GTK_LIB = `pkg-config --cflags --libs gtk+-3.0` -export-dynamic -no-pie
+GTK_LIB = `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
 OBJ = build/main.o
 CC = gcc
 CFLAGS  = -Wall -Werror -std=c99
