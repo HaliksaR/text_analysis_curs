@@ -1,8 +1,5 @@
 #include "body.h"
 
-
-wchar_t *analize_w = NULL;
-
 typedef struct {
     int same;
     wchar_t buffer[1000];
