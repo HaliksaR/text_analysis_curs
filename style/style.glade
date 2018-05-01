@@ -20,11 +20,11 @@
         <property name="can_focus">False</property>
         <child>
           <object class="GtkScrolledWindow" id="scrolled_window">
+            <property name="name">scroll</property>
             <property name="width_request">500</property>
             <property name="height_request">190</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="hscrollbar_policy">never</property>
             <property name="shadow_type">in</property>
             <property name="overlay_scrolling">False</property>
             <child>
@@ -35,6 +35,7 @@
                 <property name="editable">False</property>
                 <property name="wrap_mode">word</property>
                 <property name="left_margin">10</property>
+                <property name="right_margin">10</property>
                 <property name="top_margin">5</property>
                 <property name="bottom_margin">5</property>
                 <property name="indent">10</property>
@@ -43,12 +44,13 @@
             </child>
           </object>
           <packing>
+            <property name="x">5</property>
             <property name="y">20</property>
           </packing>
         </child>
         <child>
           <object class="GtkEntry" id="text_entry">
-            <property name="width_request">355</property>
+            <property name="width_request">357</property>
             <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -62,7 +64,7 @@
           <object class="GtkButton" id="button_print">
             <property name="label" translatable="yes">Ввод</property>
             <property name="name">print</property>
-            <property name="width_request">70</property>
+            <property name="width_request">153</property>
             <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -71,7 +73,7 @@
             <accelerator key="Return" signal="activate"/>
           </object>
           <packing>
-            <property name="x">355</property>
+            <property name="x">357</property>
             <property name="y">379</property>
           </packing>
         </child>
@@ -81,14 +83,13 @@
             <property name="name">analize</property>
             <property name="width_request">70</property>
             <property name="height_request">40</property>
-            <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <signal name="clicked" handler="button_analize_clicked" swapped="no"/>
             <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
           </object>
           <packing>
-            <property name="x">430</property>
+            <property name="x">433</property>
             <property name="y">379</property>
           </packing>
         </child>
@@ -104,6 +105,9 @@
               <attribute name="underline" value="True"/>
             </attributes>
           </object>
+          <packing>
+            <property name="x">5</property>
+          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -118,11 +122,13 @@
             </attributes>
           </object>
           <packing>
+            <property name="x">5</property>
             <property name="y">209</property>
           </packing>
         </child>
         <child>
           <object class="GtkScrolledWindow" id="scrolled_window2">
+            <property name="name">scroll</property>
             <property name="width_request">500</property>
             <property name="height_request">150</property>
             <property name="visible">True</property>
@@ -146,6 +152,7 @@
             </child>
           </object>
           <packing>
+            <property name="x">5</property>
             <property name="y">230</property>
           </packing>
         </child>

@@ -1,17 +1,12 @@
-#include <stdlib.h>
-#include <stdio.h> 
-#include <string.h>
-#include <ctype.h>
+#include "body.h"
 
 #include <gtk/gtk.h>
 #include <glib.h>
 
-#define RESET "\033[0m"
-#define GREEN "\033[1;32m"
-
 GtkWidget   *window_main, *scrolled_window, *scrolled_window2, *text_entry,  
             *button_print, *button_analize, *button_clear,*text_view, *text_view2;
 GtkBuilder  *builder;   
+
 
 static GtkWidget* window_maingtk();
 void widget_build();
@@ -22,7 +17,7 @@ void button_analize_clicked();
 void button_print_clicked();
 
 void append_textview(GtkWidget *text_view, const gchar *text);
-void analize_func(FILE *analize,FILE *data);
+void error_analize();
 
 int main(int argc, char *argv[]) { //GOOD
     gtk_init(&argc, &argv);
@@ -97,47 +92,67 @@ void widget_build() { //GOOD
 }
 
 void on_window_main_destroy() { //GOOD
+    button_clear_clicked();
     gtk_main_quit();
-    printf("%sGoodbye ^^%s\n", GREEN, RESET);
+    printf("%s\nGoodbye ^^%s\n", GREEN, RESET);
 }
 
 void button_clear_clicked() { //GOOD
-    FILE *analize, *data;
-    analize = fopen("./src/analize_text.txt", "r");
-    data = fopen("./src/data_text.txt", "r");
+    remove("./src/.data_text.txt");
+    remove("./src/.analize_text.txt");
 
-    if (data != NULL || analize != NULL) {
-        GtkTextBuffer *buffer;
-        buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
-        gtk_text_buffer_set_text(buffer,"", 0);
-        buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view2));
-        gtk_text_buffer_set_text(buffer,"", 0);
+    GtkTextBuffer *buffer;
+    buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
+    gtk_text_buffer_set_text(buffer,"", 0);
+    buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view2));
+    gtk_text_buffer_set_text(buffer,"", 0);
 
-        remove("./src/data_text.txt");
-        remove("./src/analize_text.txt");
-    }
+    gtk_widget_set_visible(text_entry, TRUE);
+    gtk_widget_set_visible(button_print, TRUE);
+    gtk_widget_set_visible(button_analize, FALSE);
+    gtk_widget_set_size_request(button_print, 153, 40);
 }
 
-void button_analize_clicked() {
-    FILE *analize, *data;
-    data = fopen("./src/data_text.txt", "r");
-
+void button_analize_clicked() { //GOOD
+    data = fopen("./src/.data_text.txt", "r");
     if (data != NULL) {
-        analize = fopen("./src/analize_text.txt", "w");
-        analize_func(analize, data);
+        analize = fopen("./src/.analize_text.txt", "w");
+        analize_func();
+        fclose(analize);
+        analize = fopen("./src/.analize_text.txt", "r");
+        char *msg = malloc(100);
+        int num = 0;
+        while (fscanf(analize, "%s" , msg) != EOF) {
+            num++;
+            append_textview(text_view2, msg);
+            append_textview(text_view2, " ");
+            if (num == 3) {
+                append_textview(text_view2, "\n");
+                num = 0;
+            }
+        }
+        append_textview(text_view2, "\n");
+        fclose(analize);
+
+        gtk_widget_set_visible(text_entry, FALSE);
+        gtk_widget_set_visible(button_analize, FALSE);
+        gtk_widget_set_visible(button_print, FALSE);
+        fclose(data);
     }
 }
 
 void button_print_clicked() { //GOOD
     char *text = (char*)gtk_entry_get_text(GTK_ENTRY(text_entry));
     if (strcmp(text, "") != 0) {
-        FILE *data;
-        data = fopen("./src/data_text.txt", "w");
+        data = fopen("./src/.data_text.txt", "a");
         append_textview(text_view, gtk_entry_get_text(GTK_ENTRY(text_entry)));
-        append_textview(text_view2, gtk_entry_get_text(GTK_ENTRY(text_entry)));
-        fprintf (data, "%s", text);
+        append_textview(text_view, "\n");
+        fprintf (data, "%s\n", text);
         fclose(data);
         gtk_entry_set_text(GTK_ENTRY(text_entry), "");
+
+        gtk_widget_set_size_request(button_print, 70, 40);
+        gtk_widget_set_visible(button_analize, TRUE);
     }
 }
 
@@ -147,8 +162,4 @@ void append_textview(GtkWidget *text_view, const gchar *text) { //GOOD
     GtkTextIter iter;
     gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
     gtk_text_buffer_insert (buffer, &iter, text, -1);
-}
-
-void analize_func(FILE *analize,FILE *data) {
-    // в процессе :)
 }

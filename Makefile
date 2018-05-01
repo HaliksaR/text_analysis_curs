@@ -1,15 +1,18 @@
 GTK_LIB = `pkg-config --cflags --libs gtk+-3.0` -export-dynamic #-no-pie
-OBJ = build/main.o
+OBJ = build/main_gtk.o build/body.o 
 CC = gcc
-CFLAGS  = -Wall -Werror -std=c99
+CFLAGS  = -g2 -Wall -Werror -std=c99
 
 .PHONY: clean open gdb
 
 bin/Frequency_analysis : $(OBJ) bin
 		$(CC) $(CFLAGS) -o bin/Frequency_analysis $(OBJ) $(GTK_LIB)
 
-build/main.o : src/main.c build
-		$(CC) $(CFLAGS) -o build/main.o -c src/main.c $(GTK_LIB)
+build/main_gtk.o : src/main_gtk.c build
+		$(CC) $(CFLAGS) -o build/main_gtk.o -c src/main_gtk.c $(GTK_LIB)
+
+build/body.o : src/body.c build
+		$(CC) $(CFLAGS) -o build/body.o -c src/body.c $(GTK_LIB)
 
 build:
 	mkdir build

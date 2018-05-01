@@ -1,12 +1,12 @@
 * {
     color: white;
-    
 }
 window {
     border-left-width: 0pt;
     border-right-width: 0pt;
     border-top-width: 0pt;
     border-width: 0pt;
+    background-color: #29353b;
 }
 headerbar {
     background-color:#121116;
@@ -30,6 +30,7 @@ entry {
     border-width: 0pt;
     box-shadow: none;
 }
+
 button#print {
     background-color:#00BCD4;
     color: rgb(255, 255, 255);
