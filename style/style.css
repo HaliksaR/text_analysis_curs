@@ -73,3 +73,8 @@ label#labell {
     font-weight: bolder;
     color: #ee4747;
 }
+label#devel {
+    font-size: 12pt;
+    font-weight: bolder;
+    color: #ee4747;
+}

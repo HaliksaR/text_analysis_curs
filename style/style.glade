@@ -3,6 +3,119 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <!-- interface-css-provider-path style.css -->
+  <object class="GtkAboutDialog" id="aboutgtk">
+    <property name="can_focus">False</property>
+    <property name="resizable">False</property>
+    <property name="window_position">center</property>
+    <property name="icon">img/5454545.png</property>
+    <property name="type_hint">dialog</property>
+    <property name="gravity">center</property>
+    <property name="program_name">Частотный анализ текста</property>
+    <property name="version">1.0</property>
+    <property name="copyright" translatable="yes">Курсовая работа студента Сибирского государственного университета телекоммуникаций и информатики</property>
+    <property name="website">https://github.com/HaliksaR/text_analysis_curs</property>
+    <property name="website_label" translatable="yes">Github</property>
+    <property name="logo">img/5454545.png</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">69</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="name">devel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">10</property>
+                <property name="label" translatable="yes">Создатель</property>
+                <property name="justify">center</property>
+                <property name="single_line_mode">True</property>
+                <property name="track_visited_links">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixbuf">img/sredny (3).png</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLinkButton">
+                <property name="label" translatable="yes">HaliksaR</property>
+                <property name="width_request">99</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="relief">none</property>
+                <property name="uri">https://github.com/HaliksaR</property>
+                <property name="visited">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar" id="header1">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="title">Частотный анализ текста</property>
+        <property name="subtitle">by HaliksaR</property>
+        <property name="spacing">15</property>
+        <property name="show_close_button">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="width_request">35</property>
+            <property name="height_request">0</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">img/5454545.png</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="window_main">
     <property name="width_request">510</property>
     <property name="height_request">461</property>

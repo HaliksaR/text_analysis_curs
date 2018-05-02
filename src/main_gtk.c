@@ -3,12 +3,13 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 
-GtkWidget   *window_main, *scrolled_window, *scrolled_window2, *text_entry,  
+GtkWidget   *window_main, *aboutgtk, *scrolled_window, *scrolled_window2, *text_entry,  
             *button_print, *button_analize, *button_clear,*text_view, *text_view2;
 GtkBuilder  *builder;   
 
 
 static GtkWidget* window_maingtk();
+static GtkWidget* about();
 void widget_build();
 void on_window_main_destroy();
 
@@ -50,6 +51,33 @@ static GtkWidget* window_maingtk() { //GOOD
     g_object_unref(builder);
 
     return window_main;
+}
+
+static GtkWidget* about() { //GOOD
+    GError* error = NULL;
+
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file(builder, "./style/style.glade", &error)) {
+        g_critical("Не могу загрузить файл: %s", error->message);
+        g_error_free(error);
+    }
+    GFile *file = g_file_new_for_path("./style/style.css");
+    GtkCssProvider *provider = gtk_css_provider_new();
+    if(!gtk_css_provider_load_from_file(provider, file, &error)) {
+        g_warning("%s", error->message);
+        g_error_free(error);
+    }
+    gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+    gtk_builder_connect_signals(builder, NULL);
+
+    aboutgtk = GTK_WIDGET(gtk_builder_get_object(builder, "aboutgtk"));
+    if (!aboutgtk) {
+        g_critical("Ошибка при получении виджета aboutgtk");
+    }   
+
+    g_object_unref(builder);
+
+    return aboutgtk;
 }
 
 void widget_build() { //GOOD
@@ -149,15 +177,21 @@ void button_analize_clicked() { //GOOD
 void button_print_clicked() { //GOOD
     char *text = (char*)gtk_entry_get_text(GTK_ENTRY(text_entry));
     if (strcmp(text, "") != 0) {
-        data = fopen("./src/.data_text.txt", "a");
-        append_textview(text_view, gtk_entry_get_text(GTK_ENTRY(text_entry)));
-        append_textview(text_view, "\n");
-        fprintf (data, "%s\n", text);
-        fclose(data);
-        gtk_entry_set_text(GTK_ENTRY(text_entry), "");
+        if(strcmp(text,"!about") == 0) {
+                aboutgtk = about();
+                gtk_widget_show(aboutgtk);
+                gtk_entry_set_text(GTK_ENTRY(text_entry), "");
+        } else {
+            data = fopen("./src/.data_text.txt", "a");
+            append_textview(text_view, gtk_entry_get_text(GTK_ENTRY(text_entry)));
+            append_textview(text_view, "\n");
+            fprintf (data, "%s\n", text);
+            fclose(data);
+            gtk_entry_set_text(GTK_ENTRY(text_entry), "");
 
-        gtk_widget_set_size_request(button_print, 70, 40);
-        gtk_widget_set_visible(button_analize, TRUE);
+            gtk_widget_set_size_request(button_print, 70, 40);
+            gtk_widget_set_visible(button_analize, TRUE);
+        }
     }
 }
 
