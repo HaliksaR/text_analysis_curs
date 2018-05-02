@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) { //GOOD
     gtk_init(&argc, &argv);
     window_main = window_maingtk();
     gtk_widget_show(window_main);
+    button_clear_clicked();
     gtk_main();
     return 0;
 }
@@ -117,27 +118,31 @@ void button_analize_clicked() { //GOOD
     data = fopen("./src/.data_text.txt", "r");
     if (data != NULL) {
         analize = fopen("./src/.analize_text.txt", "w");
-        analize_func();
-        fclose(analize);
-        analize = fopen("./src/.analize_text.txt", "r");
-        char *msg = malloc(100);
-        int num = 0;
-        while (fscanf(analize, "%s" , msg) != EOF) {
-            num++;
-            append_textview(text_view2, msg);
-            append_textview(text_view2, " ");
-            if (num == 3) {
-                append_textview(text_view2, "\n");
-                num = 0;
+        int err = analize_func();
+        if (err == -1) {
+            error_analize();
+        } else {
+            fclose(analize);
+            analize = fopen("./src/.analize_text.txt", "r");
+            char *msg = malloc(100);
+            int num = 0;
+            while (fscanf(analize, "%s" , msg) != EOF) {
+                num++;
+                append_textview(text_view2, msg);
+                append_textview(text_view2, " ");
+                if (num == 3) {
+                    append_textview(text_view2, "\n");
+                    num = 0;
+                }
             }
-        }
-        append_textview(text_view2, "\n");
-        fclose(analize);
+            append_textview(text_view2, "\n");
+            fclose(analize);
 
-        gtk_widget_set_visible(text_entry, FALSE);
-        gtk_widget_set_visible(button_analize, FALSE);
-        gtk_widget_set_visible(button_print, FALSE);
-        fclose(data);
+            gtk_widget_set_visible(text_entry, FALSE);
+            gtk_widget_set_visible(button_analize, FALSE);
+            gtk_widget_set_visible(button_print, FALSE);
+            fclose(data);
+        }
     }
 }
 
@@ -162,4 +167,8 @@ void append_textview(GtkWidget *text_view, const gchar *text) { //GOOD
     GtkTextIter iter;
     gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
     gtk_text_buffer_insert (buffer, &iter, text, -1);
+}
+
+void error_analize() {
+    append_textview(text_view2, "ERROR ANALIZE\n");
 }

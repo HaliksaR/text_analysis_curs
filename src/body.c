@@ -5,7 +5,7 @@ typedef struct {
     wchar_t buffer[1000];
 } words;
 
-void analize_func() {
+int analize_func() {
     setlocale(LC_CTYPE, "");
     wchar_t *fal = malloc(1000);
     int num = 0;
@@ -78,4 +78,5 @@ void analize_func() {
     for (i = 0; i < max; i++) {
         fwprintf(analize, L"%ls\n", arr_done[i].buffer);
     }
+    return 0;
 }

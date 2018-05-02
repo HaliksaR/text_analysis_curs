@@ -1,64 +1,75 @@
 * {
     color: white;
 }
+
 window {
-    border-left-width: 0pt;
-    border-right-width: 0pt;
-    border-top-width: 0pt;
     border-width: 0pt;
     background-color: #29353b;
 }
+
 headerbar {
     background-color:#121116;
     background-blend-mode: darken;
-    border-left-width: 0pt;
-    border-right-width: 0pt;
-    border-top-width: 0pt;
     border-width: 0pt;
     font-size: 10pt;
     font-weight: bolder;
     box-shadow: none;
 }
 
+textview#view text {
+    color: #00BCD4;
+}
+
+textview#view2 text {
+    color: #ee4747;
+}
+
+textview {
+    background: #29353b;
+    border-width: 0pt;
+}
+
+scrolledwindow {
+    border-width: 0pt;
+}
+
 entry {
     caret-color:#00BCD4;
     background-color:#121116;
     color: #00BCD4;
-    border-left-width: 0pt;
-    border-right-width: 0pt;
-    border-top-width: 0pt;
     border-width: 0pt;
     box-shadow: none;
 }
 
 button#print {
     background-color:#00BCD4;
+    background:#00BCD4;
     color: rgb(255, 255, 255);
+    border-color: #00BCD4;
 }
 
 button#analize {
     background-color:#00BCD4;
+    background:#00BCD4;
     color: rgb(255, 255, 255);
+    border-color: #00BCD4;
 }
 
 button#clear {
     background-color: #ce3d3d;
+    background: #ce3d3d;
     color: rgb(255, 255, 255);
+    border-color: #ce3d3d;
 }
 
-textview#view text {
-    color: #00BCD4;
-}
 label#label {
     font-size: 12pt;
     font-weight: bolder;
     color: #00BCD4;
 }
+
 label#labell {
     font-size: 12pt;
     font-weight: bolder;
-    color: #ee4747;
-}
-textview#view2 text {
     color: #ee4747;
 }

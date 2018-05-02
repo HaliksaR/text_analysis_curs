@@ -12,6 +12,6 @@
 #define GREEN "\033[1;32m"
 
 FILE *analize, *data;
-void analize_func();
+int analize_func();
 
 #endif
