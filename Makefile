@@ -1,7 +1,7 @@
 GTK_LIB = `pkg-config --cflags --libs gtk+-3.0` -export-dynamic #-no-pie
 OBJ = build/main_gtk.o build/body.o 
 CC = gcc
-CFLAGS  = -g2 -Wall -Werror -std=c99
+CFLAGS  = -g2 -Wall  -std=c99
 
 .PHONY: clean open gdb
 

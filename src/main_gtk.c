@@ -152,7 +152,7 @@ void button_analize_clicked() { //GOOD
         } else {
             fclose(analize);
             analize = fopen("./src/.analize_text.txt", "r");
-            char *msg = malloc(100);
+            char *msg = (char*) malloc(1000);
             int num = 0;
             while (fscanf(analize, "%s" , msg) != EOF) {
                 num++;
@@ -163,6 +163,7 @@ void button_analize_clicked() { //GOOD
                     num = 0;
                 }
             }
+            free(msg);
             append_textview(text_view2, "\n");
             fclose(analize);
 
@@ -171,6 +172,8 @@ void button_analize_clicked() { //GOOD
             gtk_widget_set_visible(button_print, FALSE);
             fclose(data);
         }
+    } else {
+        error_analize();
     }
 }
 

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <wchar.h>
 #include <wctype.h>
-#include <locale.h>
+#include <malloc.h>
 
 #define RESET "\033[0m"
 #define GREEN "\033[1;32m"
