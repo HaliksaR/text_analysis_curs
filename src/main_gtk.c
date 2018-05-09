@@ -3,8 +3,8 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 
-GtkWidget   *window_main, *aboutgtk, *scrolled_window, *scrolled_window2, *text_entry,  
-            *button_print, *button_analize, *button_clear,*text_view, *text_view2;
+GtkWidget   *window_main, *aboutgtk, *text_entry,  
+            *button_print, *button_analize, *button_clear, *text_view, *text_view2;
 GtkBuilder  *builder;   
 
 
@@ -85,14 +85,6 @@ void widget_build() { //GOOD
     if (!window_main) {
         g_critical("Ошибка при получении виджета window_main");
     }   
-    scrolled_window = GTK_WIDGET(gtk_builder_get_object(builder, "scrolled_window"));
-    if (!scrolled_window) {
-        g_critical("Ошибка при получении виджета scrolled_window");
-    }
-    scrolled_window2 = GTK_WIDGET(gtk_builder_get_object(builder, "scrolled_window2"));
-    if (!scrolled_window2) {
-        g_critical("Ошибка при получении виджета scrolled_window2");
-    }
     text_entry = GTK_WIDGET(gtk_builder_get_object(builder, "text_entry"));
     if (!text_entry) {
         g_critical("Ошибка при получении виджета text_entry");
@@ -181,9 +173,9 @@ void button_print_clicked() { //GOOD
     char *text = (char*)gtk_entry_get_text(GTK_ENTRY(text_entry));
     if (strcmp(text, "") != 0) {
         if(strcmp(text,"!about") == 0) {
-                aboutgtk = about();
-                gtk_widget_show(aboutgtk);
-                gtk_entry_set_text(GTK_ENTRY(text_entry), "");
+            aboutgtk = about();
+            gtk_widget_show(aboutgtk);
+            gtk_entry_set_text(GTK_ENTRY(text_entry), "");
         } else {
             data = fopen("./src/.data_text.txt", "a");
             append_textview(text_view, gtk_entry_get_text(GTK_ENTRY(text_entry)));
