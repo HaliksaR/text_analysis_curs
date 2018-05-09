@@ -2,6 +2,12 @@
 
 # README
 Программа calcFrequency производит анализ слов в исходном тексте. 
+## Make 
+```make
+    make
+    make open
+    or add -no-pie
+```
 ## Нужные пакеты
 ### Ubuntu
 
