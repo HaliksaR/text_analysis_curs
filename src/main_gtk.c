@@ -20,7 +20,7 @@ void button_print_clicked();
 void append_textview(GtkWidget *text_view, const gchar *text);
 void error_analize();
 
-int main(int argc, char *argv[]) { //GOOD
+int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
     window_main = window_maingtk();
     gtk_widget_show(window_main);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) { //GOOD
     return 0;
 }
 
-static GtkWidget* window_maingtk() { //GOOD
+static GtkWidget* window_maingtk() {
     GError* error = NULL;
 
     builder = gtk_builder_new();
@@ -53,7 +53,7 @@ static GtkWidget* window_maingtk() { //GOOD
     return window_main;
 }
 
-static GtkWidget* about() { //GOOD
+static GtkWidget* about() {
     GError* error = NULL;
 
     builder = gtk_builder_new();
@@ -80,7 +80,7 @@ static GtkWidget* about() { //GOOD
     return aboutgtk;
 }
 
-void widget_build() { //GOOD
+void widget_build() {
     window_main = GTK_WIDGET(gtk_builder_get_object(builder, "window_main"));
     if (!window_main) {
         g_critical("Ошибка при получении виджета window_main");
@@ -112,13 +112,13 @@ void widget_build() { //GOOD
 
 }
 
-void on_window_main_destroy() { //GOOD
+void on_window_main_destroy() {
     button_clear_clicked();
     gtk_main_quit();
     printf("%s\nGoodbye ^^%s\n", GREEN, RESET);
 }
 
-void button_clear_clicked() { //GOOD
+void button_clear_clicked() {
     remove("./src/.data_text.txt");
     remove("./src/.analize_text.txt");
 
@@ -134,7 +134,7 @@ void button_clear_clicked() { //GOOD
     gtk_widget_set_size_request(button_print, 153, 40);
 }
 
-void button_analize_clicked() { //GOOD
+void button_analize_clicked() {
     data = fopen("./src/.data_text.txt", "r");
     if (data != NULL) {
         analize = fopen("./src/.analize_text.txt", "w");
@@ -169,7 +169,7 @@ void button_analize_clicked() { //GOOD
     }
 }
 
-void button_print_clicked() { //GOOD
+void button_print_clicked() {
     char *text = (char*)gtk_entry_get_text(GTK_ENTRY(text_entry));
     if (strcmp(text, "") != 0) {
         if(strcmp(text,"!about") == 0) {
@@ -190,7 +190,7 @@ void button_print_clicked() { //GOOD
     }
 }
 
-void append_textview(GtkWidget *text_view, const gchar *text) { //GOOD
+void append_textview(GtkWidget *text_view, const gchar *text) {
     GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view));
     GtkTextMark *mark = gtk_text_buffer_get_insert (buffer);
     GtkTextIter iter;

@@ -16,7 +16,7 @@ void printf_in_file(words *arr_done, int max);
 
 void scan_words(words *arr_w) {
     int i = 0;
-    while (fwscanf(data, L"%ls", arr_w[i].buffer) != EOF) { // заполнение
+    while (fwscanf(data, L"%ls", arr_w[i].buffer) != EOF) {
         i++;
     }
     correct_words(arr_w);
@@ -25,7 +25,7 @@ void scan_words(words *arr_w) {
 void correct_words(words *arr_w) {
     words *arr_correct = (words*) malloc(sizeof(words) * num);
     words *arr_sravn = (words*) malloc(sizeof(words) * num);
-    for (int i = 0; i < num; i++) {  // убирает лишнее из строки
+    for (int i = 0; i < num; i++) {
         for (int j = 0, k = 0; j < num; j++) {
             if (!iswpunct(arr_w[i].buffer[j])) {
                 arr_correct[i].buffer[k] = towlower(arr_w[i].buffer[j]);
@@ -41,7 +41,7 @@ void correct_words(words *arr_w) {
 void calc_words(words *arr_sravn, words *arr_correct) {
     words *arr_done = (words*) malloc(sizeof(words) * num); 
     int same;
-    for (int i = 0; i < num; i++) {// подсчет
+    for (int i = 0; i < num; i++) {
         same = 1;
         for (int j = 0; j < num; j++) {
             if (wcscmp(arr_sravn[i].buffer, arr_correct[j].buffer) == 0) {
@@ -54,11 +54,11 @@ void calc_words(words *arr_sravn, words *arr_correct) {
 }
 
 void bun_words(words *arr_sravn, words *arr_correct, words *arr_done) {
-    words *bun = (words*) malloc(sizeof(words) * num); ;
+    words *bun = (words*) malloc(sizeof(words) * num);
     int max = 0, knok;
-    for (int i = 0; i < num; i++) { // подсчет
+    for (int i = 0; i < num; i++) {
         knok = 0;
-        for (int k = 0; k < num; k++) { // бан слов 
+        for (int k = 0; k < num; k++) {
             if (wcscmp(bun[k].buffer, arr_correct[i].buffer) == 0) {
                 knok++;
             }
@@ -107,7 +107,7 @@ void printf_in_file(words *arr_done, int max) {
 int analize_func() {
     wchar_t *fal = malloc(1000);
 
-    while (fwscanf(data, L"%ls" , fal) != EOF) { // подсчет количества слов для создания массива структур
+    while (fwscanf(data, L"%ls" , fal) != EOF) {
         num++;
     }
     free(fal);
