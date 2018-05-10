@@ -6,4 +6,4 @@ script: make
 branches:
   only:
     - dev
-	- master
+    - master
