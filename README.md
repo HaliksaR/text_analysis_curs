@@ -21,9 +21,12 @@
 ```
 ## Screenshots
 
-![screenshot from 2018-05-10 00 26 41](https://user-images.githubusercontent.com/35256960/39829541-089c91f2-53e9-11e8-998d-9094a6f7ec38.png)
-![screenshot from 2018-05-10 00 27 23](https://user-images.githubusercontent.com/35256960/39829543-08c71efe-53e9-11e8-9705-49fa43fe096a.png)
-![screenshot from 2018-05-10 00 27 45](https://user-images.githubusercontent.com/35256960/39829544-08f8053c-53e9-11e8-960a-1ba9f7da0496.png)
+![screenshot from 2018-05-15 00 25 17](https://user-images.githubusercontent.com/35256960/40013144-e70e1cd0-57d6-11e8-8132-b3b1b1b679c1.png)
+![screenshot from 2018-05-15 00 25 40](https://user-images.githubusercontent.com/35256960/40013145-e7375e1a-57d6-11e8-8c48-d42e0e8f83a0.png)
+![screenshot from 2018-05-15 00 26 37](https://user-images.githubusercontent.com/35256960/40013146-e7695898-57d6-11e8-9731-395f4ec02a20.png)
+![screenshot from 2018-05-15 00 26 49](https://user-images.githubusercontent.com/35256960/40013150-e7d47e84-57d6-11e8-94f5-d3aabd21f5f4.png)
+
+
 
 ## DEVELOPER
 https://vk.com/haliksar
