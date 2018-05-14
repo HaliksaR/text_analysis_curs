@@ -15,21 +15,6 @@ void alignment_words(words **arr_done, int max);
 void printf_in_file(words **arr_done, int max);
 void free_struct(words **struct_v);
 words* create_mass(words *struct_v);
-void test(int i);
-int cor = 0, cor2 = 0;
-
-void test(int i) {
-    switch (i) {
-        case 0:
-            printf("%d: Correct malloc\n", cor);
-            cor++;
-            break;
-        case 1:
-            printf("%d: Correct free\n", cor2);
-            cor2++;
-            break;     
-    }
-}
 
 words* create_mass(words *struct_v) {
     struct_v = (words*) malloc(sizeof(words));
@@ -38,7 +23,6 @@ words* create_mass(words *struct_v) {
     if (struct_v == NULL || struct_v->buffer == NULL) {
         return NULL;
     }
-    test(0);
     return struct_v;
 }
 
@@ -48,7 +32,6 @@ void free_struct(words **struct_v) {
         free(struct_v[i]->buffer);
         free(struct_v[i]);
     }
-    test(1);
 }
 
 int scan_words(words **arr_w) {
@@ -56,7 +39,7 @@ int scan_words(words **arr_w) {
     while (fwscanf(data, L"%ls", arr_w[i]->buffer) != EOF) {
         i++;
     }
-    if (!correct_words(arr_w)) {
+    if (correct_words(arr_w) == -1) {
         return -1;
     }
     return 0;
@@ -83,7 +66,7 @@ int correct_words(words **arr_w) {
         wcscpy(arr_sravn[i]->buffer, arr_correct[i]->buffer);
     }  
 
-    if (!calc_words(arr_sravn, arr_correct)) {
+    if (calc_words(arr_sravn, arr_correct) == -1) {
         return -1;
     }
 
@@ -111,7 +94,7 @@ int calc_words(words **arr_sravn, words **arr_correct) {
         }
     }
 
-    if (!bun_words(arr_sravn, arr_correct, arr_done)) {
+    if (bun_words(arr_sravn, arr_correct, arr_done) == -1) {
         return -1;
     }
 
@@ -177,7 +160,6 @@ void printf_in_file(words **arr_done, int max) {
         fwprintf(analize, L"%ls\n", arr_done[i]->buffer);
     }
 }
-
 int analize_func() {
     wchar_t *fal = malloc(1000);
     if (fal == NULL) {
@@ -201,11 +183,9 @@ int analize_func() {
     if (data == NULL) {
         return -1;
     }  
-    if (!scan_words(arr_w)) {
+    if (scan_words(arr_w)  == -1) {
         return -1;
     }
-    free_struct(arr_w); 
-    cor = 0;
-    cor2 = 0;
+    free_struct(arr_w);
     return 0;
 }

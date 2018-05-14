@@ -11,8 +11,10 @@
     <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
     <property name="program_name">Частотный анализ текста</property>
-    <property name="version">1.0</property>
-    <property name="copyright" translatable="yes">Курсовая работа студента Сибирского государственного университета телекоммуникаций и информатики</property>
+    <property name="version">0.8.5 beta</property>
+    <property name="copyright" translatable="yes">Курсовая работа студента Сибирского государственного университета телекоммуникаций и информатики
+
+Новосибирск 2018</property>
     <property name="website">https://github.com/HaliksaR/text_analysis_curs</property>
     <property name="website_label" translatable="yes">Github</property>
     <property name="logo">img/5454545.png</property>
@@ -169,6 +171,7 @@
             <property name="height_request">40</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="max_length">30000</property>
             <property name="placeholder_text" translatable="yes">Введите текст</property>
           </object>
           <packing>
