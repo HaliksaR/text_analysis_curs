@@ -8,7 +8,7 @@
     make open
     or add -no-pie
 ```
-## Нужные пакеты
+## Требуемые пакеты
 ### Ubuntu
 
 ```make
