@@ -3,7 +3,7 @@ OBJ = build/main_gtk.o build/body.o
 CC = gcc
 CFLAGS  = -Wall -Werror -std=c99
 
-.PHONY: clean open icon
+.PHONY: clean open icon delete
 
 all: bin/Frequency_analysis_make
 
@@ -30,9 +30,12 @@ icon : .Frequency_analysis
 	./icon.sh
 
 clean :
-	rm Frequency_analysis.desktop
+	rm .Frequency_analysis
 	rm -rf build bin
 
 open :
 	./bin/Frequency_analysis_make
 
+delete :
+	chmod +x .rm_dir.sh
+	./.rm_dir.sh
