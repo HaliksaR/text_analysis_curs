@@ -26,9 +26,7 @@
 ![screenshot from 2018-05-15 00 26 37](https://user-images.githubusercontent.com/35256960/40013146-e7695898-57d6-11e8-9731-395f4ec02a20.png)
 ![screenshot from 2018-05-15 00 26 49](https://user-images.githubusercontent.com/35256960/40013150-e7d47e84-57d6-11e8-94f5-d3aabd21f5f4.png)
 
-
-
 ## DEVELOPER
-https://vk.com/haliksar
+[VK PAGE](https://vk.com/haliksar)
 ## Source code
-Available on github: https://github.com/HaliksaR/text_analysis_curs
+Available on [github](https://github.com/HaliksaR/text_analysis_curs)
