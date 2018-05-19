@@ -1,7 +1,6 @@
 #include "body.h"
 
 #include <gtk/gtk.h>
-#include <glib.h>
 
 GtkWidget   *window_main, *aboutgtk, *text_entry,  
             *button_print, *button_analize, *button_clear, *text_view, *text_view2;

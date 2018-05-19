@@ -5,18 +5,18 @@
 ## Make 
 ```make
     make
-    make open
-    or add -no-pie
+    make open # открытие исполняемого файла из bin
+    make icon # создание иконки на рабочем столе
 ```
 ## Требуемые пакеты
 ### Ubuntu
 
-```make
+```bash
     apt install libgtk-3-dev
 ```
 ### Solus 
 
-```make
+```bash
     eopkg install libgtk-3-dev
 ```
 ## Screenshots
