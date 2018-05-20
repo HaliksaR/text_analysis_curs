@@ -7,10 +7,9 @@
 #include <wchar.h>
 #include <wctype.h>
 #include <malloc.h>
+#include <locale.h>
 
-#define RESET "\033[0m"
-#define GREEN "\033[1;32m"
-
+char *namedata, *nameanalis;
 FILE *analize, *data;
 int analize_func();
 

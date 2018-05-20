@@ -169,7 +169,6 @@ int analize_func() {
     while (fwscanf(data, L"%ls" , fal) != EOF) {
         num++;
     }
-
     free(fal);
     fclose(data);
 
@@ -179,7 +178,7 @@ int analize_func() {
             return -1;
         }
     }
-    data = fopen("./src/.data_text.txt", "r");
+    data = fopen(namedata, "r");
     if (data == NULL) {
         return -1;
     }  

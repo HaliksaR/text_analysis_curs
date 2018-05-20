@@ -19,7 +19,24 @@ void button_print_clicked();
 void append_textview(GtkWidget *text_view, const gchar *text);
 void error_analize();
 
+int argcpruf = 0;
+
 int main(int argc, char *argv[]) {
+    namedata = argv[1];
+    nameanalis = argv[2];
+    data = fopen(argv[1], "r");
+    if (data != NULL) {
+        setlocale(LC_CTYPE, "ru_RU.UTF8");
+        analize = fopen(nameanalis, "w");
+        analize_func();
+        fclose(data);
+        fclose(analize);
+        return 0;
+    } else {
+        wprintf(L"NOT ARGUMENTS OR INCORRECT\n");
+        namedata = "./src/.data_text.txt";
+        nameanalis = "./src/.analize_text.txt";
+    }
     gtk_init(&argc, &argv);
     window_main = window_maingtk();
     gtk_widget_show(window_main);
@@ -114,13 +131,11 @@ void widget_build() {
 void on_window_main_destroy() {
     button_clear_clicked();
     gtk_main_quit();
-    printf("%s\nGoodbye ^^%s\n", GREEN, RESET);
 }
 
 void button_clear_clicked() {
-    remove("./src/.data_text.txt");
-    remove("./src/.analize_text.txt");
-
+    remove(namedata);
+    remove(nameanalis);
     GtkTextBuffer *buffer;
     buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_view));
     gtk_text_buffer_set_text(buffer,"", 0);
@@ -134,15 +149,15 @@ void button_clear_clicked() {
 }
 
 void button_analize_clicked() {
-    data = fopen("./src/.data_text.txt", "r");
+    data = fopen(namedata, "r");
     if (data != NULL) {
-        analize = fopen("./src/.analize_text.txt", "w");
+        analize = fopen(nameanalis, "w");
         int err = analize_func();
         if (err == -1) {
             error_analize();
         } else {
             fclose(analize);
-            analize = fopen("./src/.analize_text.txt", "r");
+            analize = fopen(nameanalis, "r");
             char *msg = (char*) malloc(1000);
             int num = 0;
             while (fscanf(analize, "%s" , msg) != EOF) {
@@ -176,7 +191,7 @@ void button_print_clicked() {
             gtk_widget_show(aboutgtk);
             gtk_entry_set_text(GTK_ENTRY(text_entry), "");
         } else {
-            data = fopen("./src/.data_text.txt", "a");
+            data = fopen(namedata, "a");
             append_textview(text_view, gtk_entry_get_text(GTK_ENTRY(text_entry)));
             append_textview(text_view, "\n");
             fprintf (data, "%s\n", text);
