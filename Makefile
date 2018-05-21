@@ -34,7 +34,7 @@ clean :
 	rm -rf build bin
 
 open :
-	./bin/Frequency_analysis_make #arguments
+	./bin/Frequency_analysis_make #./test_text ./analize.txt
 
 delete :
 	chmod +x .rm_dir.sh

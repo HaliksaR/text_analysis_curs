@@ -1,5 +1,5 @@
 #include "body.h"
-
+#include <string.h> // для подгрузки css стилей в gtk
 #include <gtk/gtk.h>
 
 GtkWidget   *window_main, *aboutgtk, *text_entry,  
