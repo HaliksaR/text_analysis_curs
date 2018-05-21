@@ -5,18 +5,18 @@ CFLAGS  = -Wall -Werror -std=c99
 
 .PHONY: clean open icon delete
 
-all: bin/Frequency_analysis_make
+all: build bin bin/Frequency_analysis_make
 
 .Frequency_analysis : $(OBJ)
 		$(CC) $(CFLAGS) -o .Frequency_analysis $(OBJ) $(GTK_LIB)
 
-bin/Frequency_analysis_make : $(OBJ) bin
+bin/Frequency_analysis_make : $(OBJ)
 		$(CC) $(CFLAGS) -o bin/Frequency_analysis_make $(OBJ) $(GTK_LIB)
 
-build/main_gtk.o : src/main_gtk.c build
+build/main_gtk.o : src/main_gtk.c
 		$(CC) $(CFLAGS) -o build/main_gtk.o -c src/main_gtk.c $(GTK_LIB)
 
-build/body.o : src/body.c build
+build/body.o : src/body.c
 		$(CC) $(CFLAGS) -o build/body.o -c src/body.c $(GTK_LIB)
 
 build :
